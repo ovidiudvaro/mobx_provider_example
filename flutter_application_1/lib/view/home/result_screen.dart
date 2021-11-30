@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/store/quiz_store.dart';
+import 'package:provider/provider.dart';
 
-class LandingScreen extends StatelessWidget {
-  const LandingScreen({Key? key}) : super(key: key);
+class ResultScreen extends StatelessWidget {
+  const ResultScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final quizStore = context.watch<QuizStore>();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -18,7 +21,7 @@ class LandingScreen extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          'TEST',
+          '${quizStore.quizResult}',
           style: Theme.of(context).textTheme.headline1,
         ),
       ),

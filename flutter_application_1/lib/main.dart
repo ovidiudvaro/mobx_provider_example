@@ -1,35 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home/questions_screen.dart';
-import 'package:flutter_application_1/home/result_screen.dart';
-import 'package:flutter_application_1/landing/landing_screen.dart';
+import 'package:flutter_application_1/dao/quiz_dao.dart';
+import 'package:flutter_application_1/store/quiz_store.dart';
+import 'package:flutter_application_1/utils/routes_manager.dart';
+import 'package:flutter_application_1/view/home/questions_screen.dart';
+import 'package:flutter_application_1/view/home/result_screen.dart';
+import 'package:flutter_application_1/view/landing/landing_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider<QuizStore>(
+          create: (_) => QuizStore(quizDao: QuizDao()),
+        )
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Personality Test',
-      initialRoute: '/',
+      title: 'Flutter Personality Quiz',
+      initialRoute: RoutesManager.LANDING_SCREEN_ROUTE,
       routes: {
-        '/': (context) => const LandingScreen(),
-        '/questions': (context) => const QuestionsScreen(),
-        '/result': (context) => const ResultScreen(),
+        RoutesManager.LANDING_SCREEN_ROUTE: (context) => const LandingScreen(),
+        RoutesManager.QUESTIONS_SCREEN_ROUTE: (context) =>
+            const QuestionsScreen(),
+        RoutesManager.RESULT_SCREEN_ROUTE: (context) => const ResultScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Colors.white,
         textTheme: const TextTheme(
           headline1: TextStyle(
-            fontSize: 60.0,
+            fontSize: 30.0,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
           headline2: TextStyle(
-            fontSize: 40.0,
+            fontSize: 25.0,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -41,7 +55,7 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
           ),
           bodyText1: TextStyle(
-            fontSize: 12.0,
+            fontSize: 15.0,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.normal,
             color: Colors.white,
