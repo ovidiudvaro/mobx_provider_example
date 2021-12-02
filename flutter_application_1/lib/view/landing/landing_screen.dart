@@ -10,7 +10,7 @@ class LandingScreen extends StatelessWidget {
       body: GestureDetector(
         onTap: () => Navigator.pushReplacementNamed(
           context,
-          RoutesManager.RESULT_SCREEN_ROUTE,
+          RoutesManager.HOME_SCREEN_ROUTE,
         ),
         child: Container(
           decoration: BoxDecoration(
@@ -19,13 +19,13 @@ class LandingScreen extends StatelessWidget {
               end: Alignment.topRight,
               colors: [
                 Colors.blue.shade800,
-                Colors.blue.shade100,
+                Colors.blue.shade400,
               ],
             ),
           ),
           child: Center(
             child: Text(
-              'Tap on the scren to start',
+              'Tap to start',
               style: Theme.of(context).textTheme.headline1,
             ),
           ),

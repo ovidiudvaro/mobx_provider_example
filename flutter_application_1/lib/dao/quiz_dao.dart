@@ -1,21 +1,22 @@
 import 'package:flutter_application_1/dao/interface_quiz_dao.dart';
-import 'package:flutter_application_1/models/question.dart';
 import 'package:flutter_application_1/utils/network_utils.dart';
 
 class QuizDao implements IQuizDao {
+  final NetworkUtils networkUtils;
+
+  QuizDao({required this.networkUtils});
+
   @override
-  Future<List<Question>> fetchQuizData() {
-    return Future.delayed(
-      const Duration(milliseconds: 5),
-      () => NetworkUtils.buildQuizData(),
-    );
+  Future<List<Map<String, Object>>> fetchQuestions() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    return networkUtils.buildQuizData();
   }
 
   @override
-  String buildQuizResult({required int value}) {
-    if (value < 8) {
-      return 'Introvert';
-    }
-    return 'Extrovert';
+  Future<String> fetchResult(int score) async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    return networkUtils.buildResultData(score);
   }
 }

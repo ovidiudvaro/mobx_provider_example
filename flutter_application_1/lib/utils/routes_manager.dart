@@ -1,5 +1,4 @@
 class RoutesManager {
   static const LANDING_SCREEN_ROUTE = '/';
-  static const QUESTIONS_SCREEN_ROUTE = '/questions';
-  static const RESULT_SCREEN_ROUTE = '/result';
+  static const HOME_SCREEN_ROUTE = '/home';
 }

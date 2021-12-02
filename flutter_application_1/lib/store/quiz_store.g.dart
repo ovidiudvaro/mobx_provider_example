@@ -9,55 +9,55 @@ part of 'quiz_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$QuizStore on _QuizStore, Store {
-  final _$quizResultAtom = Atom(name: '_QuizStore.quizResult');
+  final _$questionIndexAtom = Atom(name: '_QuizStore.questionIndex');
 
   @override
-  String get quizResult {
-    _$quizResultAtom.reportRead();
-    return super.quizResult;
+  int get questionIndex {
+    _$questionIndexAtom.reportRead();
+    return super.questionIndex;
   }
 
   @override
-  set quizResult(String value) {
-    _$quizResultAtom.reportWrite(value, super.quizResult, () {
-      super.quizResult = value;
+  set questionIndex(int value) {
+    _$questionIndexAtom.reportWrite(value, super.questionIndex, () {
+      super.questionIndex = value;
     });
   }
 
-  final _$quizDataAtom = Atom(name: '_QuizStore.quizData');
+  final _$totalScoreAtom = Atom(name: '_QuizStore.totalScore');
 
   @override
-  Future<List<Question>>? get quizData {
-    _$quizDataAtom.reportRead();
-    return super.quizData;
+  int get totalScore {
+    _$totalScoreAtom.reportRead();
+    return super.totalScore;
   }
 
   @override
-  set quizData(Future<List<Question>>? value) {
-    _$quizDataAtom.reportWrite(value, super.quizData, () {
-      super.quizData = value;
+  set totalScore(int value) {
+    _$totalScoreAtom.reportWrite(value, super.totalScore, () {
+      super.totalScore = value;
     });
   }
 
   final _$_QuizStoreActionController = ActionController(name: '_QuizStore');
 
   @override
-  void buildQuizResult(int value) {
+  void answerQuestion(int score, List<Map<String, Object>> questions) {
     final _$actionInfo = _$_QuizStoreActionController.startAction(
-        name: '_QuizStore.buildQuizResult');
+        name: '_QuizStore.answerQuestion');
     try {
-      return super.buildQuizResult(value);
+      return super.answerQuestion(score, questions);
     } finally {
       _$_QuizStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void buildQuizData() {
-    final _$actionInfo = _$_QuizStoreActionController.startAction(
-        name: '_QuizStore.buildQuizData');
+  void resetQuiz() {
+    final _$actionInfo =
+        _$_QuizStoreActionController.startAction(name: '_QuizStore.resetQuiz');
     try {
-      return super.buildQuizData();
+      return super.resetQuiz();
     } finally {
       _$_QuizStoreActionController.endAction(_$actionInfo);
     }
@@ -66,8 +66,8 @@ mixin _$QuizStore on _QuizStore, Store {
   @override
   String toString() {
     return '''
-quizResult: ${quizResult},
-quizData: ${quizData}
+questionIndex: ${questionIndex},
+totalScore: ${totalScore}
     ''';
   }
 }
